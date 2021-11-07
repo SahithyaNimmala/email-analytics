@@ -1,0 +1,19 @@
+{% extends 'layout/dashboard.html' %} {% block body %}
+
+<div class="p-2">
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    {% for mail in mails %}
+    <div class="col">
+      <div class="card">
+        <div class="card-body h-100">
+          <h5 class="card-title">{{mail.id}}</h5>
+          <p class="card-text">{{mail.snippet}}</p>
+          <a  href={% url 'mail' mail.id %} class="btn btn-primary">View</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock body %}

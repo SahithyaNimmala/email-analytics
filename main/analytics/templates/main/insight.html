@@ -1,0 +1,73 @@
+{% extends 'layout/dashboard.html' %} {% block body %} {% block custom-css %}
+<style></style>
+{% endblock custom-css %}
+
+<div class="p-2 mx-2">
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    {% for mail in mails %}
+    <div class="col">
+      <div class="card">
+        <div class="card-body bg-white row row-cols-2 g-0">
+          <div class="col my-auto">
+            <h5 class="card-title">{{mail.id}}</h5>
+            <p class="card-text">{{mail.snippet}}</p>
+          </div>
+          <div class="col">
+            <canvas id="{{mail.id}}"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock body %} {% block custom-script %}
+<script>
+  const mails = {{mails|safe}};
+
+  // iterate mails
+  mails.forEach(createPieChart)
+
+  function createPieChart(mail){
+
+   // data for chart js
+   let data = {
+    labels: [
+      'negative',
+      'Positive',
+
+    ],
+    datasets: [{
+      label: 'Analysis',
+      data: [ mail.results.negative,mail.results.positive,],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+      ],
+      hoverOffset: 4
+    },
+
+    ]}
+
+
+    // config for chart js
+    let config = {
+    type: 'doughnut',
+    data: data,
+    options:{
+        maintainAspectRatio:false,
+        height:"10px",
+        aspectRatio:1
+    }
+      }
+
+
+   let myChart = new Chart(
+    document.getElementById(mail.id),
+    config
+  );
+
+  }
+</script>
+{% endblock custom-script %}

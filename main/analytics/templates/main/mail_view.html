@@ -1,0 +1,21 @@
+{% extends 'layout/dashboard.html' %} 
+
+{% load main_tags %}
+
+{% block body %}
+
+<div class="p-2">
+  {% for message in mail.messages %}
+  <div class="card w-75 mx-auto">
+    <div class="card-body h-100">
+      <h5 class="card-title">{{mail.id}}</h5>
+      {% for parts in message.payload.parts %}
+      {{parts.body.data | base64}}
+
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock body %}
