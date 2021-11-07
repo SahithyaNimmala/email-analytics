@@ -2,10 +2,10 @@ import keras
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import pandas as pd
-
+import os 
 # required  tokenization pickle with word embeddings
-train_data = pd.read_pickle("ml_model/tokenization.pkl")
-model3 = keras.models.load_model("ml_model/lstm.h5")
+train_data = pd.read_pickle(os.path.abspath("main/ml_model/tokenization.pkl"))
+model3 = keras.models.load_model(os.path.abspath("main/ml_model/lstm.h5"))
 maxlen = 60
 
 
