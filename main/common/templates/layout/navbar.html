@@ -1,0 +1,52 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-1" href={% url 'Home' %}>
+      <img
+        src={% static 'img/logo.png' %}
+        height="30"
+        alt=""
+        loading="lazy"
+        style="margin-top: -1px"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Custmore Care</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+        <a href={% url 'Home' %} class="btn btn-link px-3 me-2 {% if request.resolver_match.view_name == 'Home' %} btn-active{% endif %}"    data-mdb-ripple-color="success">Home</a>
+
+        <a href={% url 'insight' %} class="btn btn-link px-3 me-2 {% if request.resolver_match.view_name == 'insight' %} btn-active{% endif %}"    data-mdb-ripple-color="success">Insight</a>
+
+        <a href={% url 'logout' %} class="btn btn-link px-3 me-2 ">Logout</a>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
